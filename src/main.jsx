@@ -10,8 +10,10 @@ import {
   createContactAction,
   deleteContactAction,
   editContactAction,
+  updateContactFavorite,
 } from "./actions/contactsAction";
 import EditContact from "./EditContact";
+import Index from "./Index";
 
 const router = createBrowserRouter([
   {
@@ -22,9 +24,14 @@ const router = createBrowserRouter([
     action: createContactAction,
     children: [
       {
+        index: true,
+        element: <Index />,
+      },
+      {
         path: "contacts/:contactId",
         element: <Contact />,
         loader: getContactLoader,
+        action: updateContactFavorite,
       },
       {
         path: "contacts/:contactId/edit",

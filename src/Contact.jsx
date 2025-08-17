@@ -1,8 +1,7 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useFetcher, useLoaderData } from "react-router-dom";
 
 export default function Contact() {
   const { contact } = useLoaderData();
-
   return (
     <div id="contact">
       <div>
@@ -59,9 +58,12 @@ export default function Contact() {
 }
 
 function Favorite({ contact }) {
-  const favorite = contact.favorite;
+  // eslint-disable-next-line no-unused-vars
+  const fetcher = useFetcher();
+
+  let favorite = contact.favorite;
   return (
-    <Form method="post">
+    <fetcher.Form method="post">
       <button
         name="favorite"
         value={favorite ? "false" : "true"}
@@ -69,6 +71,6 @@ function Favorite({ contact }) {
       >
         {favorite ? "★" : "☆"}
       </button>
-    </Form>
+    </fetcher.Form>
   );
 }
